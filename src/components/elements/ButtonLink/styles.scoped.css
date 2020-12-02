@@ -1,0 +1,16 @@
+.root-btn-link {
+  border: 1px solid var(--light-text-color);
+  border-radius: 0.25rem;
+  color: var(--light-text-color);
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.625rem 1.5rem;
+  text-align: center;
+}
+
+.btn-link-disabled {
+  background-color: #CACCCF;
+  color: #FFFFFF;
+  cursor: default;
+  pointer-events: none;
+}

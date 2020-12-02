@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import PropTypes from 'prop-types';
+import AppContextProvider from './context'
+import PageBase from './main'
+import { Router } from 'react-router';
+import { Switch, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import pages from './pages';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = ({ history, store }) => (
+  <Provider store={store}>
+    <Router history={history}>
+      <AppContextProvider>
+        <PageBase>
+          <Switch>
+            <Route component={pages.AddProduct} />
+          </Switch>
+        </PageBase>
+      </AppContextProvider>
+    </Router>
+  </Provider>
+);
 
 export default App;
+
+App.propTypes = {
+  history: PropTypes.object.isRequired,
+  store: PropTypes.object.isRequired,
+};
