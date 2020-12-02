@@ -11,7 +11,7 @@ import iconEmpty from '../../../assets/ic-empty.svg'
 import { thousand } from '../../../utils/format';
 
 export default function AddProductForm(props) {
-  const { change, product, handleSubmit, invalid, nameCategory, submitSucceeded } = props;
+  const { change, product, handleSubmit } = props;
   const formProduct = useSelector(s => s.form);
   const onlyNums = (value) => value.replace(/[^\d]/g, '');
   const [useStock, setUseStock] = useState(product.stockType);
@@ -56,10 +56,6 @@ export default function AddProductForm(props) {
     change('discountType', product.discountType);
     change('discount', product.discount);
   }, [product]);
-
-  useEffect(() => {
-    change('nameCategory', nameCategory || product.nameCategory);
-  }, [nameCategory]);
 
   const handleCheckboxStock = () => {
     change('stockType',!useStock);
@@ -141,7 +137,6 @@ AddProductForm.defaultProps = {
   id: '',
   invalid: true,
   product: {},
-  submitSucceeded: false
 };
 
 AddProductForm.propTypes = {
@@ -150,5 +145,4 @@ AddProductForm.propTypes = {
   id: PropTypes.string,
   invalid: PropTypes.bool,
   product: PropTypes.object,
-  submitSucceeded: PropTypes.bool
 };
